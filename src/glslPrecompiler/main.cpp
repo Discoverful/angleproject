@@ -10,6 +10,16 @@
 #include <vector>
 #include <string>
 
+#define kCCAttributeNameColor    "a_color"
+#define kCCAttributeNamePosition "a_position"
+#define kCCAttributeNameTexCoord "a_texCoord"
+
+enum {
+    kCCVertexAttrib_Position,
+    kCCVertexAttrib_Color,
+    kCCVertexAttrib_TexCoords,
+};
+
 static void usage();
 static GLuint createShader(GLenum shaderType, const char **source, unsigned sourceCount);
 
@@ -32,6 +42,10 @@ int main(int argc, char* argv[])
         usageFail = TRUE;
     
     GLuint program = glCreateProgram();
+
+    glBindAttribLocation(program, kCCVertexAttrib_Color, kCCAttributeNameColor);
+    glBindAttribLocation(program, kCCVertexAttrib_Position, kCCAttributeNamePosition);
+    glBindAttribLocation(program, kCCVertexAttrib_TexCoords, kCCAttributeNameTexCoord);
 
     argc--;
     argv++;
